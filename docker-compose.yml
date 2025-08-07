@@ -1,0 +1,35 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8005:8005"
+    restart: on-failure
+    depends_on:
+      db:
+        condition: service_started
+    environment:
+        - DATABASE_URL=postgresql://user:password@db:5432/secunda_test
+        - API_KEY=0f1891f5-45f9-4871-8b26-1599e5e45922
+    networks:
+      - my_network
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: secunda_test
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+volumes:
+  postgres_data:
+
+networks:
+  my_network:
+    driver: bridge

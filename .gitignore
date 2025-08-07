@@ -1,0 +1,11 @@
+# Default ignored files
+/.idea/
+.idea/
+.idea/workspace.xml
+/venv/
+*.bak
+*.pyc
+*log*.txt
+*.spec
+*.log
+/dist/
