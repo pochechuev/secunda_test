@@ -6,7 +6,11 @@ from starlette.responses import RedirectResponse
 
 from routes.organizations import router
 
-app = FastAPI()
+app = FastAPI(
+    title="Secunda test REST API",
+    description="",
+    version="0.0.1",
+)
 
 
 app.include_router(router)

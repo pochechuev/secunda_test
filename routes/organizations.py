@@ -16,7 +16,6 @@ router = APIRouter(
 
 def check_api_key(api_key: str = Security(APIKeyHeader(name="X-API-Key"))):
     if api_key != os.getenv("API_KEY"):
-    # if api_key != "0f1891f5-45f9-4871-8b26-1599e5e45922":
         raise HTTPException(status_code=403, detail="Invalid API Key")
     return api_key
 
